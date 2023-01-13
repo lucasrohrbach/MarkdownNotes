@@ -35,12 +35,12 @@
     <div class="card-body">
         <div class="d-flex">
             <div class="input-group me-2">
-                <input id="input1" bind:value={titleText} type="text" class=" bg-dark text-light form-control">
+                <input id="input1" bind:value={titleText} type="text" class=" bg-dark text-light form-control border-warning">
             </div>
 
         </div>
         <div class="form-floating mt-3">
-            <textarea class="form-control bg-dark text-light border-light" bind:value={textAreaText} placeholder="Leave a comment here" id="textarea1" style="height: 100px"></textarea>
+            <textarea style="height: 400px" class="form-control bg-dark text-light border-warning" bind:value={textAreaText}></textarea>
         </div>
         <div class="d-flex flex-row-reverse mt-3">
             <button class="btn btn-danger ms-2" on:click={cancel}>Cancel</button>

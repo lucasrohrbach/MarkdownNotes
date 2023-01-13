@@ -31,7 +31,7 @@
                 {#if !isEditing}
                     <h3 class=" mt-1">{Note.title}</h3>
                 {:else}
-                    <input class="mt-1 col-2 form-control bg-dark text-light" bind:value={Note.title} placeholder="Title">
+                    <input class="mt-1 col-2 form-control bg-dark text-light border-warning" bind:value={Note.title} placeholder="Title">
                 {/if}
             </div>
             <div class="col d-flex justify-content-end">
@@ -47,7 +47,7 @@
         {#if !isEditing}
             {@html converter.makeHtml(Note.content)}
         {:else}
-            <textarea class="form-control bg-dark text-light" bind:value={Note.content} rows="3"></textarea>
+            <textarea style="height: 500px" class="form-control bg-dark text-light border-warning" bind:value={Note.content}></textarea>
         {/if}
         <div class="d-flex flex-row-reverse my-3">
             {#if isEditing}
