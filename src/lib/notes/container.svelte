@@ -13,13 +13,7 @@
         
         <NewNote bind:visibility={newCardVisible}></NewNote>
         {#each $Notes as note}
-            <Note 
-                id={note.id} 
-                title={note.title} 
-                content={note.content} 
-                created={note.created} 
-                modified={note.modified}
-            />
+            <Note Note={note}/>
         {/each}
     </div>
 </div>
