@@ -7,11 +7,14 @@
   let dataParsed = false;
 
   onMount(async () => {
-    Notes.set(
-      JSON.parse(
-        localStorage.getItem("Notes") ? localStorage.getItem("Notes") : null
-      )
-    );
+    if(localStorage.getItem("Notes") )
+    {
+      Notes.set(
+        JSON.parse(
+          localStorage.getItem("Notes")
+        )
+      );
+    }
     dataParsed = true;
   });
 

@@ -28,18 +28,19 @@
 
 </script>
 
-<div id="newCardEditor" class="{display} card self-align-center mt-3" >
+<div id="newCardEditor" class="{display} bg-dark card self-align-center mt-3" >
+    <div class="card-header">
+        <h4 class="text-light">New Note</h4>
+    </div>
     <div class="card-body">
         <div class="d-flex">
             <div class="input-group me-2">
-                <span class="input-group-text">Header</span>
-                <input id="input1" bind:value={titleText} type="text" class="form-control">
+                <input id="input1" bind:value={titleText} type="text" class=" bg-dark text-light form-control">
             </div>
 
         </div>
         <div class="form-floating mt-3">
-            <textarea class="form-control" bind:value={textAreaText} placeholder="Leave a comment here" id="textarea1" style="height: 100px"></textarea>
-            <label for="textarea1"></label>
+            <textarea class="form-control bg-dark text-light border-light" bind:value={textAreaText} placeholder="Leave a comment here" id="textarea1" style="height: 100px"></textarea>
         </div>
         <div class="d-flex flex-row-reverse mt-3">
             <button class="btn btn-danger ms-2" on:click={cancel}>Cancel</button>

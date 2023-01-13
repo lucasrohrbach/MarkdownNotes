@@ -6,9 +6,9 @@
     let newCardVisible = false;
 </script>
 <div class="d-flex justify-content-center">
-    <div style="width: 50rem;">   
+    <div style="width: 50rem;" class="mb-5">   
         <div class="d-flex flex-row-reverse mt-3">
-            <button class="btn btn-dark text-light" on:click={()=>newCardVisible=!newCardVisible}><i class="bi bi-plus-lg"></i>New Note</button>
+            <button class="btn btn-warning text-dark" on:click={()=>newCardVisible=!newCardVisible}><i class="bi bi-plus-lg"></i>New Note</button>
         </div>
         
         <NewNote bind:visibility={newCardVisible}></NewNote>
