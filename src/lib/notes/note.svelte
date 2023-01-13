@@ -1,35 +1,59 @@
 <script lang="ts">
-    import FaFileAlt from 'svelte-icons/fa/FaFileAlt.svelte'
-    import FaTrashAlt from 'svelte-icons/fa/FaTrashAlt.svelte'
-    import FaEdit from 'svelte-icons/fa/FaEdit.svelte'
+    import {Notes} from "../typeScript/stores"
 
-    function newCard(){
-        
+    let isEditing:boolean = false;
+    
+    export let id;
+    export let title;
+    export let content;
+    export let modified;
+    export let created;
+
+    function deleteNote(id:string){
+        $Notes.splice(getNoteIndex(id), 1);
+        $Notes = $Notes;
+    }
+    function editNote(id:string, title:string, content:string){
+        $Notes[getNoteIndex(id)].title = title;
+        $Notes[getNoteIndex(id)].content = content;
+        $Notes[getNoteIndex(id)].modified = new Date().toString();
+        $Notes = $Notes;
+        isEditing = false;
+    }
+
+    function getNoteIndex(id:string){
+       return $Notes.findIndex(d => d.id == id);
     }
 </script>
 
-<div class="d-flex flex-row-reverse mt-3">
-    <button class="btn btn-dark text-light" on:click={newCard}><i class="bi bi-plus-lg"></i>New Note</button>
-</div>
-
-<div id="newCardEditor" class="card self-align-center mt-3" >
+<div id="{id}" class="card self-align-center mt-3" >
     <div class="card-body">
-        <div class="card-title d-flex">
-            <h3 class="col-2 mt-1">Card title</h3>
-            <button class="btn btn-danger me-2"><i class="bi bi-trash"></i></button>
-            <button class="btn btn-warning me-2"><i class="bi bi-pencil-square"></i></button>
+        <div class="card-title row">
+            <div class="col d-flex justify-content-start">
+                {#if !isEditing}
+                    <h3 class=" mt-1">{title}</h3>
+                {:else}
+                    <input class="mt-1 col-2 form-control" bind:value={title} placeholder="Title">
+                {/if}
+            </div>
+            <div class="col d-flex justify-content-end">
+                {#if !isEditing}
+                    <button on:click={deleteNote(id)} class="btn btn-danger me-2"><i class="bi bi-trash"></i></button>
+                    <button on:click={() => isEditing = true} class="btn btn-warning me-2"><i class="bi bi-pencil-square"></i></button>
+                {/if}
+            </div>
         </div>
-        <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
-    </div>
-</div>
 
-<div class="card self-align-center mt-3" >
-    <div class="card-body">
-        <div class="card-title d-flex">
-            <h3 class="col-2 mt-1">Card title</h3>
-            <button class="btn btn-danger me-2"><i class="bi bi-trash"></i></button>
-            <button class="btn btn-warning me-2"><i class="bi bi-pencil-square"></i></button>
+        {#if !isEditing}
+            <p class="card-text">{content}</p>
+        {:else}
+            <textarea class="form-control" bind:value={content} rows="3"></textarea>
+        {/if}
+        <div class="d-flex flex-row-reverse mt-3">
+            {#if isEditing}
+                <button on:click={() => isEditing = false} class="btn btn-danger">Cancel</button>
+                <button on:click={editNote(id, title, content)} class="btn btn-success me-2">Save</button>
+            {/if}
         </div>
-        <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
     </div>
 </div>

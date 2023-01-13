@@ -23,6 +23,7 @@
     "vite": "^4.0.0"
   },
   "dependencies": {
-    "svelte-icons": "^2.1.0"
+    "svelte-icons": "^2.1.0",
+    "svelte-local-storage-store": "^0.3.2"
   }
 }

@@ -3,10 +3,10 @@
 </script>
 
 <nav class="navbar navbar-expand-lg bg-warning">
-    <div class="container-fluid">
+    <div class="container-fluid d-flex justify content-center">
         <img src="{logo}" alt="logo" class="m-3" style="width: 2rem;"/>
         <h4 class="">Marknote</h4>
-        <button
+        <!-- <button
             class="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
@@ -36,6 +36,6 @@
                     <a class="nav-link disabled">Disabled</a>
                 </li>
             </ul>
-        </div>
+        </div> -->
     </div>
 </nav>
