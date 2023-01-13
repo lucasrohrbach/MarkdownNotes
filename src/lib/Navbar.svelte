@@ -3,7 +3,7 @@
 </script>
 
 <nav class="navbar navbar-expand-lg bg-warning">
-    <div class="container-fluid d-flex justify content-center">
+    <div class="container-fluid d-flex justify-content-center">
         <img src="{logo}" alt="logo" class="m-3" style="width: 2rem;"/>
         <h4 class="">Marknote</h4>
         <!-- <button

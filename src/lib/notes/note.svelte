@@ -1,5 +1,8 @@
 <script lang="ts">
     import {Notes} from "../typeScript/stores"
+    import Showdown from "Showdown"
+
+    let converter = new Showdown.Converter({tables: true});
 
     let isEditing:boolean = false;
     
@@ -40,7 +43,7 @@
         </div>
 
         {#if !isEditing}
-            <p class="card-text">{Note.content}</p>
+            {@html converter.makeHtml(Note.content)}
         {:else}
             <textarea class="form-control" bind:value={Note.content} rows="3"></textarea>
         {/if}
@@ -49,6 +52,9 @@
                 <button on:click={() => isEditing = false} class="btn btn-danger">Cancel</button>
                 <button on:click={() => editNote(Note.id, Note.title, Note.content)} class="btn btn-success me-2">Save</button>
             {/if}
+        </div>
+        <div>
+
         </div>
     </div>
 </div>
